@@ -56,6 +56,6 @@ public class ShipControls : MonoBehaviour
         transform.Rotate(new Vector3(0, 0, -_horizontal * 0.2f), Space.Self);
 
         transform.position += transform.right * _currentSpeed * Time.deltaTime;
-
     }
+
 }
