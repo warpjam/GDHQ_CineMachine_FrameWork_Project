@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipControls : MonoBehaviour
@@ -47,15 +45,14 @@ public class ShipControls : MonoBehaviour
             }
         }//decrease speed
 
-        Vector3 rotateH = new Vector3(0, 0, -_horizontal);
+        Vector3 rotateH = new Vector3(0, _horizontal, 0);
         transform.Rotate(rotateH * _rotSpeed * Time.deltaTime);
 
-        Vector3 rotateV = new Vector3(_vertical, 0, 0);
+        Vector3 rotateV = new Vector3(0, _vertical, 0);
         transform.Rotate(rotateV * _rotSpeed * Time.deltaTime);
 
-        transform.Rotate(new Vector3(0, 0, -_horizontal * 0.2f), Space.Self);
+        transform.Rotate(new Vector3(-_horizontal * 0.2f, 0, 0), Space.Self);
 
-        transform.position += transform.right * _currentSpeed * Time.deltaTime;
+        transform.position += transform.forward * _currentSpeed * Time.deltaTime;
     }
-
 }
