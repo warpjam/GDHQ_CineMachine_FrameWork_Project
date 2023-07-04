@@ -5,6 +5,7 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _cameras;
     private int _currentCameraIndex;
+    [SerializeField] private GameObject _cockpitObject;
 
     private void Start()
     {
@@ -36,6 +37,9 @@ public class CameraManager : MonoBehaviour
 
             // Set the priority of the new camera
             SetCameraPriority(_currentCameraIndex, 15);
+
+            // Toggle cockpit based on the current camera
+            ToggleCockpit(_currentCameraIndex == 0);
         }
     }
 
@@ -52,5 +56,10 @@ public class CameraManager : MonoBehaviour
         {
             camera.GetComponent<CinemachineBlendListCamera>().Priority = priority;
         }
+    }
+
+    private void ToggleCockpit(bool enable)
+    {
+        _cockpitObject.SetActive(enable);
     }
 }
