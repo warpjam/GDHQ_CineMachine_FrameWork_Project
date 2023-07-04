@@ -3,14 +3,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float _baseSpeed = 5f; // Base speed of the player
-    public float _speedIncrease = 2f; // Speed multiplier when pressing 'T' key
+    public float _speedIncrease = 0.5f; // Speed multiplier when pressing 'T' key
     public float _speedDecrease = 0.5f; // Speed decrease when pressing 'G' key
-    public float _rotationSpeed = 100f; // Rotation speed of the player
-    public float _pitchSpeed = 50f; // Pitch speed of the player
-    public float _strafeSpeed = 5f; // Strafe speed of the player
+    public float _rotationSpeed = 25f; // Rotation speed of the player
+    public float _pitchSpeed = 25f; // Pitch speed of the player
+    
 
-    private float _currentSpeed; // Current speed of the player
-
+    [SerializeField] private float _currentSpeed; // Current speed of the player
+    [SerializeField] private GameObject _exhaustFX;
+    [SerializeField] private Camera _externalCam;
     void Start()
     {
         _currentSpeed = _baseSpeed;
@@ -20,10 +21,14 @@ public class Player : MonoBehaviour
     {
         // Move the player forward
         transform.Translate(Vector3.forward * _currentSpeed * Time.deltaTime);
-
         VelocityControls();
-
         ShipMovementControls();
+        CheckExhaust();
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            //_externalCam.GetComponent<Camera>
+        }
     }
 
     private void ShipMovementControls()
@@ -103,5 +108,17 @@ public class Player : MonoBehaviour
     private void AllAhead()
     {
         _currentSpeed = _baseSpeed;
+    }
+
+    private void CheckExhaust()
+    {
+        if (_currentSpeed == 0)
+        {
+            _exhaustFX.SetActive(false);
+        }
+        else if (_currentSpeed > 0)
+        {
+            _exhaustFX.SetActive(true);
+        }
     }
 }
