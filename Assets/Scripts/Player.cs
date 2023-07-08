@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera _externalCam;
     void Start()
     {
-        _currentSpeed = _baseSpeed;
+        _currentSpeed = 0;
     }
 
     void Update()

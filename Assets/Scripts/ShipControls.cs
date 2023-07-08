@@ -13,7 +13,7 @@ public class ShipControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentSpeed = 1;
+        _currentSpeed = 0;
     }
 
     // Update is called once per frame
