@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float _currentSpeed; // Current speed of the player
     [SerializeField] private GameObject _exhaustFX;
-    [SerializeField] private Camera _externalCam;
     void Start()
     {
         _currentSpeed = 0;
@@ -24,11 +23,7 @@ public class Player : MonoBehaviour
         VelocityControls();
         ShipMovementControls();
         CheckExhaust();
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            //_externalCam.GetComponent<Camera>
-        }
+        
     }
 
     private void ShipMovementControls()
