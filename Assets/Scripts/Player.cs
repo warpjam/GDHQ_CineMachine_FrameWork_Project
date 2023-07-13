@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float _baseSpeed = 5f; // Base speed of the player
+    public float _baseSpeed = 2f; // Base speed of the player
     public float _speedIncrease = 0.5f; // Speed multiplier when pressing 'T' key
     public float _speedDecrease = 0.5f; // Speed decrease when pressing 'G' key
     public float _rotationSpeed = 25f; // Rotation speed of the player
     public float _pitchSpeed = 25f; // Pitch speed of the player
     
+    
 
     [SerializeField] private float _currentSpeed; // Current speed of the player
-    [SerializeField] private GameObject _exhaustFX;
+    [SerializeField] private GameObject _speedFX;
     void Start()
     {
         _currentSpeed = 0;
@@ -109,11 +110,13 @@ public class Player : MonoBehaviour
     {
         if (_currentSpeed == 0)
         {
-            _exhaustFX.SetActive(false);
+            _speedFX.SetActive(false);
+            
         }
         else if (_currentSpeed > 0)
         {
-            _exhaustFX.SetActive(true);
+            _speedFX.SetActive(true);
+            
         }
     }
 }
