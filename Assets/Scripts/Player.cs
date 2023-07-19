@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
     public float _speedDecrease = 0.5f; // Speed decrease when pressing 'G' key
     public float _rotationSpeed = 25f; // Rotation speed of the player
     public float _pitchSpeed = 25f; // Pitch speed of the player
-    
+
+    [SerializeField] private bool _isIdle = false;
+    [SerializeField] private float _idleTimer = 0;
+    [SerializeField] private float _idleTimeTrigger = 5f;
     
 
     [SerializeField] private float _currentSpeed; // Current speed of the player
@@ -19,11 +22,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // Move the player forward
         transform.Translate(Vector3.forward * _currentSpeed * Time.deltaTime);
         VelocityControls();
         ShipMovementControls();
         CheckExhaust();
+        CheckIdle();
         
     }
 
@@ -119,4 +122,27 @@ public class Player : MonoBehaviour
             
         }
     }
+
+    private void CheckIdle()
+    {
+        if (Input.GetAxis("Mouse X") == 0 && Input.GetAxis("Mouse Y") == 0 && !Input.anyKey && _currentSpeed == 0)
+        {
+            _idleTimer += Time.deltaTime;
+
+            if (_idleTimer >= _idleTimeTrigger)
+            {
+                _isIdle = true;
+                Debug.Log("No Input detected");
+            }
+        }
+        else
+        {
+            _idleTimer = 0f; // Reset the idle timer when input is detected
+            if (_isIdle)
+            {
+                _isIdle = false;
+            }
+        }
+    }
+
 }
