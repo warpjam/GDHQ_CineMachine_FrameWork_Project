@@ -11,10 +11,13 @@ public class Player : MonoBehaviour
     [SerializeField] private bool _isIdle = false;
     [SerializeField] private float _idleTimer = 0;
     [SerializeField] private float _idleTimeTrigger = 5f;
+
+    [SerializeField] private GameObject _playerExplosion;
     
 
     [SerializeField] private float _currentSpeed; // Current speed of the player
     [SerializeField] private GameObject _speedFX;
+    [SerializeField] private AudioClip _explosionSound;
     void Start()
     {
         _currentSpeed = 0;
@@ -125,7 +128,7 @@ public class Player : MonoBehaviour
 
     private void CheckIdle()
     {
-        if (Input.GetAxis("Mouse X") == 0 && Input.GetAxis("Mouse Y") == 0 && !Input.anyKey && _currentSpeed == 0)
+        if (Input.GetAxis("Mouse X") == 0 && Input.GetAxis("Mouse Y") == 0 && !Input.anyKey)
         {
             _idleTimer += Time.deltaTime;
 
@@ -144,5 +147,20 @@ public class Player : MonoBehaviour
             }
         }
     }
+    
+    private void OnCollisionEnter(Collision other)
+    {
+        ExplodeAndDestroyPlayer();
+    }
+    
 
+    private void ExplodeAndDestroyPlayer()
+    {
+        
+        Instantiate(_playerExplosion, transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(_explosionSound, transform.position);
+        Destroy(gameObject, 0.8f);
+        
+    }
 }
+
