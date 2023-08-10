@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject[] _cameras;
     private int _currentCameraIndex;
     [SerializeField] private GameObject _cockpitObject;
-    [SerializeField] private GameObject _runningLights;
+    //[SerializeField] private GameObject _runningLights;
 
     private void Start()
     {
@@ -62,6 +62,6 @@ public class CameraManager : MonoBehaviour
     private void ToggleCockpit(bool enable)
     {
         _cockpitObject.SetActive(enable);
-        _runningLights.SetActive(false);
+        //_runningLights.SetActive(false);
     }
 }

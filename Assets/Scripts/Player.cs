@@ -3,8 +3,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float _baseSpeed = 2f; // Base speed of the player
-    public float _speedIncrease = 0.5f; // Speed multiplier when pressing 'T' key
-    public float _speedDecrease = 0.5f; // Speed decrease when pressing 'G' key
+    public float _speedIncrease = 1.5f; // Speed multiplier when pressing 'T' key
+    public float _speedDecrease = 1.5f; // Speed decrease when pressing 'G' key
     public float _rotationSpeed = 25f; // Rotation speed of the player
     public float _pitchSpeed = 25f; // Pitch speed of the player
 
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         
         Instantiate(_playerExplosion, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(_explosionSound, transform.position);
-        Destroy(gameObject, 0.8f);
+        Destroy(gameObject, 0.2f);
         
     }
 }
