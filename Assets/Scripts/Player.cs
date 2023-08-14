@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         
         Instantiate(_playerExplosion, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(_explosionSound, transform.position);
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject, 0.75f);
         
     }
 }
