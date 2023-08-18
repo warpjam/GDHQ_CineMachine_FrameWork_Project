@@ -13,6 +13,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitGame();
+        }   
+    }
+    
+    void QuitGame()
+    {
+        Application.Quit();
         
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }
