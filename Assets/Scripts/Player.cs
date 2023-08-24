@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,10 +8,7 @@ public class Player : MonoBehaviour
     public float _speedDecrease = 1.5f; // Speed decrease when pressing 'G' key
     public float _rotationSpeed = 25f; // Rotation speed of the player
     public float _pitchSpeed = 25f; // Pitch speed of the player
-
-    [SerializeField] private bool _isIdle = false;
-    [SerializeField] private float _idleTimer = 0;
-    [SerializeField] private float _idleTimeTrigger = 5f;
+    
 
     [SerializeField] private GameObject _playerExplosion;
     
@@ -18,6 +16,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float _currentSpeed; // Current speed of the player
     [SerializeField] private GameObject _speedFX;
     [SerializeField] private AudioClip _explosionSound;
+
+    
+    
+    
     void Start()
     {
         _currentSpeed = 0;
@@ -29,8 +31,6 @@ public class Player : MonoBehaviour
         VelocityControls();
         ShipMovementControls();
         CheckExhaust();
-        CheckIdle();
-        
     }
 
     private void ShipMovementControls()
@@ -125,28 +125,7 @@ public class Player : MonoBehaviour
             
         }
     }
-
-    private void CheckIdle()
-    {
-        if (Input.GetAxis("Mouse X") == 0 && Input.GetAxis("Mouse Y") == 0 && !Input.anyKey)
-        {
-            _idleTimer += Time.deltaTime;
-
-            if (_idleTimer >= _idleTimeTrigger)
-            {
-                _isIdle = true;
-                Debug.Log("No Input detected");
-            }
-        }
-        else
-        {
-            _idleTimer = 0f; // Reset the idle timer when input is detected
-            if (_isIdle)
-            {
-                _isIdle = false;
-            }
-        }
-    }
+    
     
     private void OnCollisionEnter(Collision other)
     {
@@ -162,5 +141,6 @@ public class Player : MonoBehaviour
         Destroy(gameObject, 0.75f);
         
     }
+
 }
 
