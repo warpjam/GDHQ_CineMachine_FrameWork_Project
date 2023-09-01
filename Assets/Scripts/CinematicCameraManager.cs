@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using Cinemachine;
 using UnityEngine;
 using System.Collections;
@@ -17,6 +17,8 @@ public class CinematicCameraManager : MonoBehaviour
     [SerializeField] private float _idleTimer = 0;
     [SerializeField] private float _idleTimeTrigger = 5f;
 
+    [SerializeField] private GameplayCameraManager _gameplayCameraManager;
+
     private void Start()
     {
         _pauseCams = GetComponentsInChildren<CinemachineVirtualCamera>();
@@ -27,31 +29,7 @@ public class CinematicCameraManager : MonoBehaviour
         CheckIdle();
     }
     
-    private void CheckIdle()
-    {
-        if (Input.GetAxis("Mouse X") == 0 && Input.GetAxis("Mouse Y") == 0 && !Input.anyKey)
-        {
-            _idleTimer += Time.deltaTime;
-
-            if (_idleTimer >= _idleTimeTrigger)
-            {
-                _isIdle = true;
-                Debug.Log("No Input detected, start external camera cycle");
-                StartCameraCycle()
-                ;
-
-            }
-        }
-        else
-        {
-            _idleTimer = 0f; // Reset the idle timer when input is detected
-            if (_isIdle)
-            {
-                _isIdle = false;
-                StopCameraCycle();
-                
-            }
-        }
+    
     }
 
 
@@ -59,6 +37,8 @@ public class CinematicCameraManager : MonoBehaviour
     {
         _isCyclingCameras = true; // Set flag to indicate camera cycling
         StartCoroutine(CyclePauseCamerasCoroutine());
+        
+        _gameplayCameraManager.ResetPreviousCameraPriority();
     }
 
     public void StopCameraCycle()
@@ -98,4 +78,4 @@ public class CinematicCameraManager : MonoBehaviour
             _pauseCams[cameraIndex].Priority = priority;
         }
     }
-}
+}*/
